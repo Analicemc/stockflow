@@ -6,12 +6,33 @@ class Estoque(models.Model):
     qtde_inicial = models.IntegerField() 
     qtde_ativa   = models.IntegerField()
 
-    def criar_estoque(self, produto_id, qtde_inicial, nro_lote):
-        estoque = Estoque()
-        estoque.produto_id = produto_id
-        estoque.qtde_ativa = qtde_inicial
-        estoque.nro_lote = nro_lote
+@classmethod
+def criar_estoque(cls, produto_id, qtde_inicial, nro_lote):
+    try:
+        estoque = cls(
+            produto_id=produto_id,
+            qtde_ativa=qtde_inicial,
+            nro_lote=nro_lote
+        )
         estoque.save()
+        return estoque
+    except Exception as e:
+        print(f"Erro ao criar estoque: {e}")
+        return None
+    
+def incrementar_estoque(self, quantidade):
+    try:
+        self.qtde_ativa += quantidade
+        self.save()
+    except Exception as e:
+        print(f"Erro ao incrementar estoque: {e}")
 
-    """def retirar_estoque(self, nro_lote, qtde):
-        Estoque."""
+def decrementar_estoque(self, quantidade):
+    try:
+        if quantidade > self.qtde_ativa:
+            print("Erro: quantidade a decrementar maior que a quantidade ativa em estoque.")
+            return
+        self.qtde_ativa -= quantidade
+        self.save()
+    except Exception as e:
+        print(f"Erro ao decrementar estoque: {e}")
