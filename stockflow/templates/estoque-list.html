@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Estoques</title>
+</head>
+<body>
+    <h1>Lista de Estoques</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Número do Lote</th>
+                <th>Quantidade Inicial</th>
+                <th>Quantidade Ativa</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for estoque in estoques %}
+            <tr>
+                <td>{{ estoque.produto.nome }}</td>
+                <td>{{ estoque.nro_lote }}</td>
+                <td>{{ estoque.qtde_inicial }}</td>
+                <td>{{ estoque.qtde_ativa }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
