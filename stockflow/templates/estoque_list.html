@@ -17,7 +17,7 @@
         <tbody>
             {% for estoque in estoques %}
             <tr>
-                <td>{{ estoque.produto.nome }}</td>
+                <td>{{ estoque.produto_id.nome }}</td>
                 <td>{{ estoque.nro_lote }}</td>
                 <td>{{ estoque.qtde_inicial }}</td>
                 <td>{{ estoque.qtde_ativa }}</td>

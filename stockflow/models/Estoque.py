@@ -1,4 +1,5 @@
 from django.db import models
+from .Produto import Produto
 
 class Estoque(models.Model):
     produto_id   = models.ForeignKey(Produto, on_delete=models.CASCADE)
