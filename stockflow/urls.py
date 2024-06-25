@@ -16,9 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import EstoqueListView
+from .views import EstoqueListView, estoque_detail
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('estoques/', EstoqueListView.as_view(), name='estoque-list'),
+    path('estoques/<int:pk>/', estoque_detail, name='estoque_detail'),
 ]
