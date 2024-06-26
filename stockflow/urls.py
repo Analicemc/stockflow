@@ -15,11 +15,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from .views import EstoqueListView, estoque_detail
+from django.urls import path, include
+from .views import EstoqueListView, estoque_detail, get_stocks, get_stock, create_stock, delete_stock, update_stock
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('estoques/', EstoqueListView.as_view(), name='estoque-list'),
     path('estoques/<int:pk>/', estoque_detail, name='estoque_detail'),
+    path('api/estoques/', get_stocks, name='get_stocks'),
+    path('api/estoque/<int:pk>', get_stock, name='get_stock'),
+    path('api/estoques/create/', create_stock, name='create_stock'),
+    path('api/estoques/<int:pk>/delete/', delete_stock, name='delete_stock'),
+    path('api/estoques/<int:pk>/update/', update_stock, name='update_stock'),
 ]
